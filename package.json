@@ -1,0 +1,59 @@
+{
+  "name": "npm-boilerplate",
+  "version": "1.0.0",
+  "description": "Automatizador npm",
+  "main": "index.js",
+  "scripts": {
+    "css": "node-sass -o dist/css src/scss --output-style compressed --source-map-embed",
+    "autoprefixer": "postcss -u autoprefixer --autoprefixer.browsers '> 5%, ie 9' -r dist/css/*",
+    "build:css": "npm run css & npm run autoprefixer",
+    "js": "babel src/js --out-dir dist/js",
+    "watch:css": "onchange -i 'src/scss/*.scss' -- npm run build:css",
+    "watch:js": "onchange -i 'src/js/*.js' -- npm run js",
+    "serve": "browser-sync start --server dist --files dist",
+    "dev": "parallelshell 'npm run serve' 'npm run watch:js' 'npm run watch:css'",
+    "lint:sass": "sass-lint src/**/*.scss -c -v",
+    "lint:js": "eslint src/js/**/*.js",
+    "lint": "npm run lint:sass && npm run lint:js",
+    "validate": "npm ls",
+    
+  },
+  "pre-commit": [
+      "lint"
+    ]
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juancorbacho/npm-boilerplate.git"
+  },
+  "keywords": [
+    "npm"
+  ],
+  "author": "boilerplate",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/juancorbacho/npm-boilerplate/issues"
+  },
+  "homepage": "https://github.com/juancorbacho/npm-boilerplate#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@clarencep/parallelshell": "^3.0.4",
+    "autoprefixer": "^9.7.6",
+    "babel-eslint": "^10.1.0",
+    "browser-sync": "^2.26.7",
+    "eslint": "^6.8.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.20.2",
+    "node-sass": "^4.14.0",
+    "onchange": "^7.0.2",
+    "postcss-cli": "^7.1.1",
+    "precommit-hook": "^3.0.0",
+    "sass-lint": "^1.13.1"
+  },
+  "pre-commit": [
+    "lint",
+    "validate",
+    "test"
+  ]
+}
