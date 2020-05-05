@@ -1,3 +1,21 @@
-body{background-color:#937c7c}body h1{display:flex;align-items:center;justify-content:center}.backgnd{background-color:yellow;color:red}
+body {
+  background-color: #937c7c;
+}
 
-/*# sourceMappingURL=data:application/json;base64,ewoJInZlcnNpb24iOiAzLAoJImZpbGUiOiAiZGlzdC9jc3MvbWFpbi5jc3MiLAoJInNvdXJjZXMiOiBbCgkJInNyYy9zY3NzL21haW4uc2NzcyIKCV0sCgkibmFtZXMiOiBbXSwKCSJtYXBwaW5ncyI6ICJBQUFBLEFBQUEsSUFBSSxBQUFDLENBQ0gsZ0JBQWdCLENBQUUsT0FBa0IsQ0FPckMsQUFSRCxBQUdFLElBSEUsQ0FHRixFQUFFLEFBQUMsQ0FDRCxPQUFPLENBQUUsSUFBSSxDQUNiLFdBQVcsQ0FBRSxNQUFNLENBQ25CLGVBQWUsQ0FBRSxNQUFNLENBQ3hCLEFBR0gsQUFBQSxRQUFRLEFBQUMsQ0FDUCxnQkFBZ0IsQ0FBRSxNQUFNLENBQ3hCLEtBQUssQ0FBRSxHQUFHLENBQ1giCn0= */
+h1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.backgnd {
+  background-color: yellow;
+  color: red;
+}
+/*# sourceMappingURL=main.css.map */

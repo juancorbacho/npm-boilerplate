@@ -4,22 +4,24 @@
   "description": "Automatizador npm",
   "main": "index.js",
   "scripts": {
-    "css": "node-sass -o dist/css src/scss --output-style compressed --source-map-embed",
+    "css": "node-sass -o dist/css src/scss --output-style expanded --source-map=true",
+    "prefix": "postcss dist/css/main.css --use=autoprefixer --map=false --output=dist/css/main.css",
     "autoprefixer": "postcss -u autoprefixer -r dist/css/*",
-    "build:css": "npm run css && npm run autoprefixer",
+    "minify": "cleancss --level=1 --source-map --source-map-inline-sources --output dist/css/main.min.css dist/css/main.css",
     "js": "babel src/js --out-dir dist/js",
     "html": "pug --output-style compressed -o dist/ src/pug/pages/*.pug",
     "images": "imagemin src/images/* --out-dir=dist/images",
-    "watch:css": "onchange -i 'src/scss/*.scss' -- npm run build:css",
+    "watch:css": "onchange -i 'src/scss/*.scss' -- npm run css",
     "watch:js": "onchange -i 'src/js/*.js' -- npm run js",
     "watch:html": "onchange -i 'src/pug/**/*.pug' -- npm run html",
     "serve": "browser-sync start --server dist --files dist",
     "dev": "parallelshell 'npm run serve' 'npm run watch:html' 'npm run watch:js' 'npm run watch:css'",
-    "build": "parallelshell 'npm run images' 'npm run html' 'npm run js' 'npm run css'",
+    "build": "npm run clean && npm run css && npm run prefix && npm run minify &&npm run html && npm run js && npm run images",
     "lint:sass": "sass-lint src/**/*.scss -c -v",
     "lint:js": "eslint src/js/**/*.js",
     "lint": "npm run lint:sass && npm run lint:js",
-    "validate": "npm ls"
+    "validate": "npm ls",
+    "clean": "rimraf dist"
   },
   "pre-commit": [
     "lint",
@@ -47,14 +49,16 @@
     "autoprefixer": "^9.7.6",
     "babel-eslint": "^10.1.0",
     "browser-sync": "^2.26.7",
+    "clean-css-cli": "^4.3.0",
     "eslint": "^6.8.0",
     "eslint-plugin-babel": "^5.3.0",
     "eslint-plugin-import": "^2.20.2",
+    "imagemin-cli": "^5.1.0",
     "node-sass": "^4.14.0",
     "onchange": "^7.0.2",
     "postcss-cli": "^7.1.1",
     "precommit-hook": "^3.0.0",
-    "pug": "^2.0.4",
+    "pug-cli": "^1.0.0-alpha6",
     "sass-lint": "^1.13.1"
   }
 }
